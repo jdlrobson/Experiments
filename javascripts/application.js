@@ -101,6 +101,9 @@ WMobile.prototype = {
 			mobile.toggle_section(number);
 		});
 	},
+	// if there is a hash link and this is currently hidden
+	// make sure we reveal it to the user
+	// note currently it toggles it but should probably only show it
 	reveal_for_hash: function(hash) {
 		var container = $(hash).parent(".section_heading,.content_block")[0],
 			section_idx;
@@ -110,7 +113,7 @@ WMobile.prototype = {
 			this.toggle_section(section_idx);
 		}
 	},
-	// TODO
+	// TODO: refactor
 	toggle_section: function( section_id ) {
 		var i, b = $("#section_" + section_id)[0],
 			bb = $('button'), s, e, d;
