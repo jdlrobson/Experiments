@@ -1,3 +1,6 @@
+/*global document, window, $*/
+/*jslint sloppy: true, white:true, maxerr: 50, indent: 4, plusplus: true*/
+
 var Cookie = function (name) {
 	this.name = name;
 };
