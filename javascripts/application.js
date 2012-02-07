@@ -67,39 +67,6 @@ for ( var a = document.getElementsByTagName( 'a' ), i = 0; i < a.length; i++ ) {
 	}
 }
 
-if ( document.location.hash.indexOf( '#' ) == 0 ) {
-	wm_reveal_for_hash( document.location.hash );
-}
-
-function wm_reveal_for_hash( hash ) {
-	var targetel = document.getElementById( hash.substr(1) );
-	if ( targetel ) {
-		for (var p = targetel.parentNode; p && p.className != 'content_block' && p.className != 'section_heading'; ) {
-			p = p.parentNode;
-		}
-		if ( p && p.style.display != 'block' ) {
-			var section_idx = parseInt( p.id.split( '_' )[1] );
-			wm_toggle_section( section_idx );
-		}
-	}
-}
-
-function wm_toggle_section( section_id ) {
-	var b = document.getElementById( 'section_' + section_id ),
-		bb = b.getElementsByTagName( 'button' );
-	for ( var i = 0; i <= 1; i++ ) {
-		var s = bb[i].style;
-		s.display = s.display == 'none' || ( i && !s.display ) ? 'inline-block' : 'none';
-	}
-	for ( var i = 0, d = ['content_','anchor_']; i<=1; i++ ) {
-		var e = document.getElementById( d[i] + section_id );
-		
-		if ( e ) {
-			e.style.display = e.style.display == 'block' ? 'none' : 'block';
-		}
-	}
-}
-
 var Cookie = function (name) {
 	this.name = name;
 };
@@ -137,8 +104,37 @@ var WMobile = function () {
 	this.init();
 };
 WMobile.prototype = {
+	reveal_for_hash: function(hash) {
+		var container = $(hash).parent(".section_heading,.content_block")[0],
+			section_idx;
+		// TODO: why not when block?
+		if(container && container.style.display !== 'block') {
+			section_idx = parseInt(container.id.split("_")[1], 10);
+			this.toggle_section(section_idx);
+		}
+	},
+	// TODO
+	toggle_section: function( section_id ) {
+		var i, b = $("#section_" + section_id)[0],
+			bb = $('button'), s, e, d;
+
+		for(i = 0; i <= 1; i++) {
+			s = bb[i].style;
+			s.display = s.display === 'none' || ( i && !s.display ) ? 'inline-block' : 'none';
+		}
+		for(i = 0, d = ['content_','anchor_']; i<=1; i++) {
+			e = $( "#" + d[i] + section_id )[0];
+			if(e) {
+				e.style.display = e.style.display === 'block' ? 'none' : 'block';
+			}
+		}
+	},
 	init: function() {
 		var zeroRatedBannerVisibility, dismissNotification;
+
+		if(document.location.hash.indexOf('#') === 0) {
+			this.reveal_for_hash(document.location.hash);
+		}
 
 		// Try to scroll and hide URL bar
 		window.scrollTo(0, 1);
