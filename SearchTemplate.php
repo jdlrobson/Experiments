@@ -25,8 +25,6 @@ class SearchTemplate extends MobileFrontendTemplate {
 		$languageSelectionText = '<b>' . $this->data['messages']['mobile-frontend-language'] . ':</b><br/>';
 		$languageSelectionDiv = '<div id="languageselectionsection">' . $languageSelectionText . $languageSelection . '</div>';
 
-		$logoOnClick = ( $this->data['device']['supports_javascript'] ) ? 'onclick="javascript:logoClick();"' : '';
-
 		$searchWebkitHtml = <<<HTML
 			{$openSearchResults}
 		<div id='header'>

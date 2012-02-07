@@ -998,17 +998,9 @@ class ExtMobileFrontend {
 					array( 'class' => 'section_heading hide',
 							'section_id' => $headings ),
 							$hide );
-		if ( self::$device['supports_javascript'] ) {
-			$h2OnClick = 'javascript:wm_toggle_section(' . $headings . ');';
-			$base .= Html::openElement( 'h2',
-							array( 'class' => 'section_heading',
-									'id' => 'section_' . $headings,
-									'onclick' => $h2OnClick ) );
-		} else {
-			$base .= Html::openElement( 'h2',
-							array( 'class' => 'section_heading',
-									'id' => 'section_' . $headings ) );
-		}
+		$base .= Html::openElement( 'h2',
+						array( 'class' => 'section_heading',
+								'id' => 'section_' . $headings ) );
 		$base .= $buttons .
 				Html::rawElement( 'span',
 						array( 'id' => $headlineId ),
@@ -1616,8 +1608,7 @@ class ExtMobileFrontend {
 		global $wgLanguageCode;
 		wfProfileIn( __METHOD__ );
 		$output = Html::openElement( 'select',
-			array( 'id' => 'languageselection',
-				'onchange' => 'javascript:navigateToLanguageSelection();' ) );
+			array( 'id' => 'languageselection' ) );
 		foreach ( self::$languageUrls as $languageUrl ) {
 			if ( $languageUrl['lang'] == $wgLanguageCode ) {
 				$output .=	Html::element( 'option',
