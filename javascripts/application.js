@@ -119,7 +119,7 @@ WMobile.prototype = {
 	// TODO: refactor
 	toggle_section: function( section_id ) {
 		var i, b = $("#section_" + section_id)[0],
-			bb = $('button'), s, e, d;
+			bb = $('button', b), s, e, d;
 
 		for(i = 0; i <= 1; i++) {
 			s = bb[i].style;
