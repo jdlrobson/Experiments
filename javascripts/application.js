@@ -1,72 +1,3 @@
-var search = document.getElementById( 'search' );
-var clearSearch = document.getElementById( 'clearsearch' );
-var results = document.getElementById( 'results' );
-var languageSelection = document.getElementById( 'languageselection' );
-
-initClearSearchLink();
-
-function initClearSearchLink() {
-	clearSearch.setAttribute( 'title','Clear' );
-	clearSearch.addEventListener( 'mousedown', clearSearchBox, true );
-	search.addEventListener( 'keyup', handleClearSearchLink, false );
-}
-
-function navigateToLanguageSelection() {
-	var url;
-	if ( languageSelection ) {
-		url = languageSelection.options[languageSelection.selectedIndex].value;
-		if ( url ) {
-			location.href = url;
-		}
-	}
-}
-
-function handleClearSearchLink() {
-	if ( clearSearch ) {
-		if ( search.value.length > 0 ) {
-			clearSearch.style.display = 'block';
-		} else {
-			clearSearch.style.display = 'none';
-			if ( results ) {
-				results.style.display = 'none';
-			}
-		}
-	}
-}
-
-function clearSearchBox( event ) {
-	search.value = '';
-	clearSearch.style.display = 'none';
-	if ( results ) {
-		results.style.display = 'none';
-	}
-	if ( event ) {
-		event.preventDefault();
-	}
-}
-
-function logoClick() {
-	var n = document.getElementById( 'nav' ).style;
-	n.display = n.display == 'block' ? 'none' : 'block';
-	if (n.display == 'block') {
-		if ( languageSelection ) {
-			if ( languageSelection.offsetWidth > 175 ) {
-				var newWidth = languageSelection.offsetWidth + 30;
-				n.width = newWidth + 'px';
-			}
-		}
-	}
-};
-
-// And this...
-for ( var a = document.getElementsByTagName( 'a' ), i = 0; i < a.length; i++ ) {
-	a[i].onclick = function() {
-		if ( this.hash.indexOf( '#' ) == 0 ) {
-			wm_reveal_for_hash( this.hash );
-		}
-	}
-}
-
 var Cookie = function (name) {
 	this.name = name;
 };
@@ -104,6 +35,72 @@ var WMobile = function () {
 	this.init();
 };
 WMobile.prototype = {
+	enhance: function () {
+		var mobile = this;
+		// hen clear button clicked hide results and self
+		$('#clearsearch').attr("title", "clear").
+			mousedown(function(ev) {
+				$("#search").val("");
+				$(ev.target, "#results").hide();
+				// TODO: are these 2 following lines needed?
+				ev.preventDefault();
+				ev.stopPropagation();
+			});
+
+			// when there is text in the search box reveal the clearsearch button
+		$("#search").keyup(function(ev) {
+			var clearSearch = $("#clearsearch")[0];
+				if($(ev.target).val().length > 0) {
+					$(clearSearch).show();
+				} else {
+					$(clearSearch, "#results").hide();
+				}
+		});
+
+		// when a language option is selected jump to that page
+		$("#languageselection").change(function(ev) {
+			var url = $(ev.target).val();
+			if(url) {
+				window.location = url;
+			}
+		});
+
+		// on clicking on logo reveal the navigation - home and random button and language toggling
+		$("#logo").click(function(ev) {
+			$("#nav").toggle();
+			// when the select menu is over 175px increase the width of the parent
+			// by 30px so there is some whitespace to the right of it
+			// TODO: surely css styling could be used here somehow
+			if ( $("#languageselection").width() > 175 ) {
+				// ignores existing padding
+				$("#nav").css("padding-right", 30);
+			}
+		});
+
+		//  clicking on this changes the language of the current page when other languages are available
+		$("#languageselection").click(function(ev) {
+			var url;
+			if($('#languageselection')[0]) {
+				url = $(ev.target).val();
+				if (url) {
+					window.location.href = url;
+				}
+			}
+		});
+
+		// update links to fragments to reveal them if they are hidden
+		$("a").click(function(ev) {
+			if (this.hash.indexOf('#') === 0) {
+				mobile.reveal_for_hash(this.hash);
+			}
+		});
+
+		// clicking on a header should toggle the section it relates to
+		$("h2.section_heading").click(function(ev) {
+			var number = this.id.split("_")[1];
+			mobile.toggle_section(number);
+		});
+	},
 	reveal_for_hash: function(hash) {
 		var container = $(hash).parent(".section_heading,.content_block")[0],
 			section_idx;
@@ -131,6 +128,9 @@ WMobile.prototype = {
 	},
 	init: function() {
 		var zeroRatedBannerVisibility, dismissNotification;
+
+		// enhance the page
+		this.enhance();
 
 		if(document.location.hash.indexOf('#') === 0) {
 			this.reveal_for_hash(document.location.hash);
