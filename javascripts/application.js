@@ -71,9 +71,6 @@ if ( document.location.hash.indexOf( '#' ) == 0 ) {
 	wm_reveal_for_hash( document.location.hash );
 }
 
-// Try to scroll and hide URL bar
-window.scrollTo( 0, 1 );
-
 function wm_reveal_for_hash( hash ) {
 	var targetel = document.getElementById( hash.substr(1) );
 	if ( targetel ) {
@@ -142,6 +139,9 @@ var WMobile = function () {
 WMobile.prototype = {
 	init: function() {
 		var zeroRatedBannerVisibility, dismissNotification;
+
+		// Try to scroll and hide URL bar
+		window.scrollTo(0, 1);
 
 		// set up notifications and visibility
 		zeroRatedBannerVisibility = new Cookie("zeroRatedBannerVisibility");
