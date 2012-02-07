@@ -1,0 +1,11 @@
+# Getting Started
+Make sure the MobileFrontend extension folder is installed
+Put this folder in your extensions folder and run
+
+	make setup
+
+this sym-links the library folder
+
+Go to LocalSettings.php and paste to enable this temporary module
+
+	require_once( "$IP/extensions/Experiments/MobileFrontend.php" );
