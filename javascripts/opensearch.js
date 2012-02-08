@@ -14,7 +14,8 @@ var search = document.getElementById( 'search' );
 function hideResults(ev) {
 	ev.stopPropagation();
 	var selector = ".suggestion-result,.search-result-item,.suggestions-result,.sq-val-update";
-	if(!$(ev.target).is(selector)) {
+	// note touchstart events can trigger on text nodes
+	if(!$(ev.target).is(selector) && ev.target.nodeType !== 3) {
 		$("#results").hide();
 	}
 }
