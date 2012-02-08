@@ -6,12 +6,9 @@ if ( scriptPath ) {
 
 var TYPING_DELAY = 500;
 var numResults = 5;
-var pixels = 'px';
 
 var results = document.getElementById( 'results' );
 var search = document.getElementById( 'search' );
-var sq = document.getElementById( 'sq' );
-var sb = document.getElementById( 'searchbox' );
 
 $("#results,body").mousedown(hideResults);
 document.body.ontouchstart = hideResults;
