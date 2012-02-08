@@ -71,13 +71,6 @@ WMobile.prototype = {
 		// on clicking on logo reveal the navigation - home and random button and language toggling
 		$("#logo").click(function(ev) {
 			$("#nav").toggle();
-			// when the select menu is over 175px increase the width of the parent
-			// by 30px so there is some whitespace to the right of it
-			// TODO: surely css styling could be used here somehow
-			if ( $("#languageselection").width() > 175 ) {
-				// ignores existing padding
-				$("#nav").css("padding-right", 30);
-			}
 		});
 
 		//  clicking on this changes the language of the current page when other languages are available
