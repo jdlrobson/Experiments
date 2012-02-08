@@ -6,36 +6,18 @@ if ( scriptPath ) {
 
 var TYPING_DELAY = 500;
 
-function searchApi(term) {
-	var limit = 5;
-	term = encodeURIComponent(term);
-	$.ajax({
-		url: apiUrl,
-		data: "action=opensearch&limit=' + limit + '&namespace=0&format=xml&search=" + term,
-		dataType: "xml",
-		success: function(doc) {
-			var results = $("Item", doc).map(function(i, el) {
-				return {
-					label: $("Text", el).text(),
-					value: $("Url", el).text()
-				}
-			});
-			writeResults(results);
-		}
-	});
-}
-
 function writeResults(sections) {
+	var results = $("#results")[0], list;
 	$(results).empty().show().width($("#searchbox").width() - 2); // substract border left and right
-	var list = $('<div class="suggestions-results">').appendTo(results)[0];
+	list = $('<div class="suggestions-results">').appendTo(results)[0];
 
 	// construct results list
 	if(sections.length === 0) {
 		$("<div>").text("No results").appendTo(list);
 	} else {
 		$(sections).each(function(i, section) {
-			var label = section.label;
-			var item = $('<div class="suggestions-result">').appendTo(list)[0];
+			var label = section.label, 
+				item = $('<div class="suggestions-result">').appendTo(list)[0];
 			$('<a class="sq-val-update">+</a>').data("label", label).appendTo(item);
 			$('<a class="search-result-item">').attr("href", section.value).
 				text(label).appendTo(item);
@@ -50,6 +32,25 @@ function writeResults(sections) {
 	}
 }
 
+function searchApi(term) {
+	var limit = 5;
+	term = encodeURIComponent(term);
+	$.ajax({
+		url: apiUrl,
+		data: "action=opensearch&limit=' + limit + '&namespace=0&format=xml&search=" + term,
+		dataType: "xml",
+		success: function(doc) {
+			var results = $("Item", doc).map(function(i, el) {
+				return {
+					label: $("Text", el).text(),
+					value: $("Url", el).text()
+				};
+			});
+			writeResults(results);
+		}
+	});
+}
+
 $(document).ready(function () {
 	var timer = -1;
 	// on a key up in the search box trigger a call to the api
@@ -57,7 +58,7 @@ $(document).ready(function () {
 		clearTimeout( timer );
 		var term = this.value;
 		if(term.length === 0) {
-			$(results).empty();
+			$("#results").empty();
 		} else {
 			timer = setTimeout(function () {
 				searchApi( term );
