@@ -195,7 +195,7 @@ ul#footer-info {
 .divclearable {
 	border: 1px solid #888;
 	display: -moz-inline-stack;
-	display: inline-block;
+	display: block;
 	zoom: 1;
 	*display: inline;
 	vertical-align: middle;
@@ -304,6 +304,12 @@ h3#sopa-notice {
 	color: #000000;
 	-webkit-margin-after: 0.5em;
 	margin: 0px;
+}
+
+#results {
+	position: absolute;
+	left: 53px;
+	top: 35px;
 }
 
 /*

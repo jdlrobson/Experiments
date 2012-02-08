@@ -195,17 +195,33 @@ body {
 	margin: 0 8px;
 }
 
-#header img, #header form, #header input, #header button {
-	vertical-align: middle;
-	display: inline-block;
+#logo {
+	position: absolute;
+	top: 4px;
+	left: 5px;
 }
 
 #searchbox {
-	width: auto;
-	padding: 5px;
+	position: relative;
+	padding: 5px 32px 5px 44px;
 	border: 1px solid #cccccc;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
+}
+
+#searchbox #form {
+	padding-right: 34px;
+	width: 100%;
+}
+
+#search {
+	width: 90%;
+}
+
+#goButton {
+	position: absolute;
+	right: 2px;
+	top: 2px;
 }
 
 #searchbox a, #searchbox img {
@@ -239,6 +255,7 @@ body {
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	clear: both;
+	position: absolute;
 	padding: 5px 0;
 }
 

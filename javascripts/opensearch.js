@@ -59,36 +59,6 @@ function whichElement( e ) {
 	}
 }
 
-function updateSearchWidth() {
-	if ( sq && search && sb ) {
-		var iw = ( document.documentElement.clientWidth ) ? document.documentElement.clientWidth : document.body.clientWidth;
-		sb.style.width = ( iw - 30 ) + pixels;
-		sq.style.width = ( iw - 110 ) + pixels;
-		search.style.width = ( iw - 130 ) + pixels;
-		if ( results ) {
-			results.style.width = ( sq.offsetWidth - 2 ) + pixels;
-			results.style.left = sq.offsetLeft + pixels;
-			results.style.top = ( sq.offsetTop + sq.offsetHeight )	+ pixels;
-		}
-	}
-}
-
-updateSearchWidth();
-
-function updateOrientationSearchWidth() {
-	switch( window.orientation ) {
-		case 0:
-		case -90:
-		case 90:
-		case 180:
-			setTimeout( updateSearchWidth, 200 );
-			break;
-  }
-}
-
-// Point to the updateOrientation function when iPhone switches between portrait and landscape modes.
-window.onorientationchange = updateOrientationSearchWidth;
-
 window.onload = function () {
 	search.addEventListener( 'keyup',
 		function() {
@@ -153,7 +123,7 @@ function escapeJsString( str ) {
 }
 
 function writeResults( sections ) {
-		results.style.display = 'block';
+	$(results).show().width($("#searchbox").width() - 2); // substract border left and right
 	if ( !sections || sections.length < 1 ) {
 		results.innerHTML = "No results";
 	} else {		
