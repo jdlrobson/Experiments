@@ -4,8 +4,7 @@ if ( scriptPath ) {
 	apiUrl = scriptPath + apiUrl;	
 }
 
-var timer = -1;
-var typingDelay = 500;
+var TYPING_DELAY = 500;
 var numResults = 5;
 var pixels = 'px';
 
@@ -28,18 +27,22 @@ function hideResults(ev) {
 	}
 }
 
-window.onload = function () {
-	search.addEventListener( 'keyup',
+$(document).ready(function () {
+	var timer = -1;
+	// on a key up in the search box trigger a call to the api
+	$("#search").keyup(
 		function() {
 			clearTimeout( timer );
 			var term = this.value;
-			if ( term.length < 1 ) {
-				results.innerHTML = '';
+			if(term.length === 0) {
+				$(results).empty();
 			} else {
-				timer = setTimeout( function () { searchApi( term ); }, typingDelay );
+				timer = setTimeout(function () {
+					searchApi( term );
+					}, TYPING_DELAY);
 			}
-		}, false );
-}
+		});
+});
 
 function searchApi( term ) {
 	var xmlHttp;
