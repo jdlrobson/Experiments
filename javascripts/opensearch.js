@@ -5,7 +5,6 @@ if ( scriptPath ) {
 }
 
 var TYPING_DELAY = 500;
-var numResults = 5;
 
 var results = document.getElementById( 'results' );
 var search = document.getElementById( 'search' );
@@ -23,24 +22,23 @@ $("#results,body").mousedown(hideResults);
 document.body.ontouchstart = hideResults;
 results.ontouchstart = hideResults;
 
-function searchApi( term ) {
-	var xmlHttp;
-	if ( window.XMLHttpRequest ) {
-		xmlHttp = new XMLHttpRequest();
-	} else {
-		xmlHttp = new ActiveXObject( 'Microsoft.XMLHTTP' );
-	}
-	xmlHttp.overrideMimeType( 'text/xml' );
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ) {
-			var sections = createObjectArray( xmlHttp.responseXML );
-			writeResults( sections );
+function searchApi(term) {
+	var limit = 5;
+	term = encodeURIComponent(term);
+	$.ajax({
+		url: apiUrl,
+		data: "action=opensearch&limit=' + limit + '&namespace=0&format=xml&search=" + term,
+		dataType: "xml",
+		success: function(doc) {
+			var results = $("Item", doc).map(function(i, el) {
+				return {
+					label: $("Text", el).text(),
+					value: $("Url", el).text()
+				}
+			});
+			writeResults(results);
 		}
-	}
-	term = encodeURIComponent( term );
-	var url = apiUrl + '?action=opensearch&limit=' + numResults + '&namespace=0&format=xml&search=' + term;
-	xmlHttp.open( 'GET', url, true );
-	xmlHttp.send();
+	});
 }
 
 $(document).ready(function () {
@@ -59,20 +57,6 @@ $(document).ready(function () {
 			}
 		});
 });
-
-function createObjectArray( responseXml ) {
-	var sections = new Array();
-	var items = responseXml.getElementsByTagName( 'Item' );
-	for ( i = 0; i < items.length; i++ ) {
-		var item = items[i];
-		var section = {
-			label: item.getElementsByTagName( 'Text' )[0].textContent,
-			value: item.getElementsByTagName( 'Url' )[0].textContent,
-		}
-		sections.push( section );
-	}
-	return sections;
-}
 
 function sqValUpdate( sqValue ) {
 	if ( search ) {
