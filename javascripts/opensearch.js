@@ -14,48 +14,17 @@ var search = document.getElementById( 'search' );
 var sq = document.getElementById( 'sq' );
 var sb = document.getElementById( 'searchbox' );
 
-function hideResults() {
-	results.style.display = 'none';
-}
+$("#results,body").mousedown(hideResults);
+document.body.ontouchstart = hideResults;
+results.ontouchstart = hideResults;
 
-document.body.onmousedown = function( event ) {
-	whichElement(event);
-}
-results.onmousedown = function( event ) {
-	whichElement(event);
-}
-
-document.body.ontouchstart = function( event ) {
-	whichElement(event);
-}
-results.ontouchstart = function( event ) {
-	whichElement(event);
-}
-
-function whichElement( e ) { 
-	var targ;
-	if ( !e ) {
-		var e = window.event;
-	}
-	if ( e.target ) {
-		targ = e.target;
-	} else if ( e.srcElement ) {
-		targ = e.srcElement;
-	}
-	
-	if ( targ.nodeType == 3 ) {
-		targ = targ.parentNode;
-	}
-	
-	e.cancelBubble = true;
-	e.stopPropagation();
-	
-	if ( targ.className == "suggestion-result" || 
-		 targ.className == "search-result-item" || 
-		 targ.className == "suggestions-result" ||
-		 targ.className == "sq-val-update" ) {
-	} else {
-		hideResults();
+// hide search suggestions and results when trigger event outside search area
+// assumes standard event handler
+function hideResults(ev) {
+	ev.stopPropagation();
+	var selector = ".suggestion-result,.search-result-item,.suggestions-result,.sq-val-update";
+	if(!$(ev.target).is(selector)) {
+		$("#results").hide();
 	}
 }
 
