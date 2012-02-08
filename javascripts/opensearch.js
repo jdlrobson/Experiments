@@ -58,35 +58,27 @@ $(document).ready(function () {
 		});
 });
 
-function sqValUpdate( sqValue ) {
-	if ( search ) {
-		search.value = sqValue + ' ';
-		search.focus();
-		searchApi( search.value );
-	}
-}
+function writeResults(sections) {
+	$(results).empty().show().width($("#searchbox").width() - 2); // substract border left and right
+	var list = $('<div class="suggestions-results">').appendTo(results)[0];
 
-function htmlEntities( str ) {
-    return String( str ).replace( /&/g, '&amp;' ).replace( /</g, '&lt;' ).replace( />/g, '&gt;' ).replace( /"/g, '&quot;' ).replace( /'/g, '&#39;' );
-}
+	// construct results list
+	if(sections.length === 0) {
+		$("<div>").text("No results").appendTo(list);
+	} else {
+		$(sections).each(function(i, section) {
+			var label = section.label;
+			var item = $('<div class="suggestions-result">').appendTo(list)[0];
+			$('<a class="sq-val-update">+</a>').data("label", label).appendTo(item);
+			$('<a class="search-result-item">').attr("href", section.value).
+				text(label).appendTo(item);
+		});
 
-function escapeJsString( str ) {
-	return String( str ).replace( /\\/g, '\\\\' ).replace( /'/g, "\\'" ).replace( /\n/g, '\\n' );
-}
-
-function writeResults( sections ) {
-	$(results).show().width($("#searchbox").width() - 2); // substract border left and right
-	if ( !sections || sections.length < 1 ) {
-		results.innerHTML = "No results";
-	} else {		
-		var html = '<div class="suggestions-results">';
-		for ( i = 0; i < sections.length; i++ ) {
-			var section = sections[i];
-			var rel = i + 1;
-			section.value = section.value.replace( /^(?:\/\/|[^\/]+)*\//, '/' );
-			html = html + "<div class=\"suggestions-result\" rel=\"" + htmlEntities( rel ) + "\" title=\"" + htmlEntities( section.label ) + "\"><a class=\"sq-val-update\" href=\"javascript:sqValUpdate('" + htmlEntities( escapeJsString( section.label ) ) + "');\">+</a><a class=\"search-result-item\" href='" + htmlEntities( section.value ) + "'>" + htmlEntities( section.label ) + "</a></div>";
-		}
-		html = html + '</div>';
-		results.innerHTML = html;
+		// allow autocomplete via + button 
+		$(".sq-val-update", results).click(function(ev) {
+			var val = $(ev.target).data("label") + " ";
+			$("#search").val(val).focus();
+			searchApi(val);
+		});
 	}
 }
