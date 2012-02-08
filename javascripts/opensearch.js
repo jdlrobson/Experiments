@@ -10,10 +10,6 @@ var numResults = 5;
 var results = document.getElementById( 'results' );
 var search = document.getElementById( 'search' );
 
-$("#results,body").mousedown(hideResults);
-document.body.ontouchstart = hideResults;
-results.ontouchstart = hideResults;
-
 // hide search suggestions and results when trigger event outside search area
 // assumes standard event handler
 function hideResults(ev) {
@@ -23,23 +19,9 @@ function hideResults(ev) {
 		$("#results").hide();
 	}
 }
-
-$(document).ready(function () {
-	var timer = -1;
-	// on a key up in the search box trigger a call to the api
-	$("#search").keyup(
-		function() {
-			clearTimeout( timer );
-			var term = this.value;
-			if(term.length === 0) {
-				$(results).empty();
-			} else {
-				timer = setTimeout(function () {
-					searchApi( term );
-					}, TYPING_DELAY);
-			}
-		});
-});
+$("#results,body").mousedown(hideResults);
+document.body.ontouchstart = hideResults;
+results.ontouchstart = hideResults;
 
 function searchApi( term ) {
 	var xmlHttp;
@@ -60,6 +42,23 @@ function searchApi( term ) {
 	xmlHttp.open( 'GET', url, true );
 	xmlHttp.send();
 }
+
+$(document).ready(function () {
+	var timer = -1;
+	// on a key up in the search box trigger a call to the api
+	$("#search").keyup(
+		function() {
+			clearTimeout( timer );
+			var term = this.value;
+			if(term.length === 0) {
+				$(results).empty();
+			} else {
+				timer = setTimeout(function () {
+					searchApi( term );
+					}, TYPING_DELAY);
+			}
+		});
+});
 
 function createObjectArray( responseXml ) {
 	var sections = new Array();
