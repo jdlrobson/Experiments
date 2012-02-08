@@ -195,47 +195,11 @@ body {
 	margin: 0 8px;
 }
 
-#logo {
-	position: absolute;
-	top: 4px;
-	left: 5px;
-}
-
-#searchbox {
-	position: relative;
-	padding: 5px 32px 5px 44px;
-	border: 1px solid #cccccc;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-}
-
-#searchbox #form {
-	padding-right: 34px;
-	width: 100%;
-}
-
-#search {
-	width: 90%;
-}
-
-#goButton {
-	position: absolute;
-	right: 2px;
-	top: 2px;
-}
-
 #searchbox a, #searchbox img {
 	border: 0px;
 	vertical-align: middle;
 }
 
-#searchbox #goButton {
-	border: 0;
-	background: url(images/s.gif) no-repeat top left;
-	background-size: 27px 25px;
-	height: 25px;
-	width: 27px;
-}
 @media screen and (-webkit-device-pixel-ratio: 1.5) {
 	#searchbox #goButton {
 		background-image: url(images/s-hdpi.png) !important;
@@ -245,103 +209,4 @@ body {
 	#searchbox #goButton {
 		background-image: url(images/s-xhdpi.png) !important;
 	}
-}
-
-#searchbox #searchField {
-	width: auto;
-}
-
-#nav {
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	clear: both;
-	position: absolute;
-	padding: 5px 0;
-}
-
-#nav form, #nav button {
-	display: inline-block;
-}
-
-#nav button {
-	background: url(images/buttonbg.gif) no-repeat center;
-	border: 0;
-	height: 23px;
-	width: 83px;
-}
-
-#disableButtons {
-	text-align: center;
-}
-
-#disableButtons button {
-	background: url(images/buttonbg.gif) no-repeat center;
-	border: 0;
-	height: 23px;
-	width: 83px;
-}
-
-#disableButtons #backButton {
-	margin-top: 5em;
-}
-
-.mwm-notice {
-	padding: 5px;
-	background: #dddddd;
-	-webkit-border-radius: 5px;
-	margin-top: 5px;
-	text-align: center;
-	border: 1px solid grey;
-}
-
-.mwm-message.mwm-notice {
-	font-size: 1.1em;
-}
-
-#image_wrapper {
-	margin: 8px 0 8px -3px;
-}
-
-#footer {
-	padding-top: 1em;
-}
-
-#footer #perm {
-	padding-top: 2em;
-	font-size: 90%;
-}
-
-#footer #copyright {
-	padding: 1em 0;
-	font-size: 80%;
-}
-
-ol.references > li:target,
-sup.reference:target,
-span.citation:target, cite:target {
-	background-color: #ddeeff;
-}
-
-.content_block,
-.section_anchors,
-button.section_heading.hide {
-	display: none;
-}
-
-#clearButton {
-	display: none;
-}
-
-#nav {
-	display: none;
-	width: 172px;
-	border: 1px solid #cccccc;
-	border-top: 0px;
-	margin: -1px 0 0 0;
-	background: white;
-	padding: 0 5px 5px 5px;
-}
-
-#search:focus {
-	outline: none;
 }
