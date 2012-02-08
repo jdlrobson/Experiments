@@ -8,7 +8,9 @@ var TYPING_DELAY = 500;
 
 function writeResults(sections) {
 	var results = $("#results")[0], list;
-	$(results).empty().show().width($("#searchbox").width() - 2); // substract border left and right
+	var top = $("#sq").offset().top + $("#sq").outerHeight(true);
+	$(results).empty().css("top", top).
+		show().width($("#searchbox").width() - 2); // substract border left and right
 	list = $('<div class="suggestions-results">').appendTo(results)[0];
 
 	// construct results list
