@@ -6,9 +6,6 @@ if ( scriptPath ) {
 
 var TYPING_DELAY = 500;
 
-var results = document.getElementById( 'results' );
-var search = document.getElementById( 'search' );
-
 // hide search suggestions and results when trigger event outside search area
 // assumes standard event handler
 function hideResults(ev) {
@@ -19,9 +16,9 @@ function hideResults(ev) {
 		$("#results").hide();
 	}
 }
-$("#results,body").mousedown(hideResults);
-document.body.ontouchstart = hideResults;
-results.ontouchstart = hideResults;
+$("#results,body").mousedown(hideResults).each(function(i, el) {
+	el.ontouchstart = hideResults;
+});
 
 function searchApi(term) {
 	var limit = 5;
