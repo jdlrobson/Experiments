@@ -6,20 +6,6 @@ if ( scriptPath ) {
 
 var TYPING_DELAY = 500;
 
-// hide search suggestions and results when trigger event outside search area
-// assumes standard event handler
-function hideResults(ev) {
-	ev.stopPropagation();
-	var selector = ".suggestion-result,.search-result-item,.suggestions-result,.sq-val-update";
-	// note touchstart events can trigger on text nodes
-	if(!$(ev.target).is(selector) && ev.target.nodeType !== 3) {
-		$("#results").hide();
-	}
-}
-$("#results,body").mousedown(hideResults).each(function(i, el) {
-	el.ontouchstart = hideResults;
-});
-
 function searchApi(term) {
 	var limit = 5;
 	term = encodeURIComponent(term);
@@ -38,23 +24,6 @@ function searchApi(term) {
 		}
 	});
 }
-
-$(document).ready(function () {
-	var timer = -1;
-	// on a key up in the search box trigger a call to the api
-	$("#search").keyup(
-		function() {
-			clearTimeout( timer );
-			var term = this.value;
-			if(term.length === 0) {
-				$(results).empty();
-			} else {
-				timer = setTimeout(function () {
-					searchApi( term );
-					}, TYPING_DELAY);
-			}
-		});
-});
 
 function writeResults(sections) {
 	$(results).empty().show().width($("#searchbox").width() - 2); // substract border left and right
@@ -80,3 +49,32 @@ function writeResults(sections) {
 		});
 	}
 }
+
+$(document).ready(function () {
+	var timer = -1;
+	// on a key up in the search box trigger a call to the api
+	$("#search").keyup(function() {
+		clearTimeout( timer );
+		var term = this.value;
+		if(term.length === 0) {
+			$(results).empty();
+		} else {
+			timer = setTimeout(function () {
+				searchApi( term );
+				}, TYPING_DELAY);
+		}
+	});
+	// hide search suggestions and results when trigger event outside search area
+	// assumes standard event handler
+	function hideResults(ev) {
+		ev.stopPropagation();
+		var selector = ".suggestion-result,.search-result-item,.suggestions-result,.sq-val-update";
+		// note touchstart events can trigger on text nodes
+		if(!$(ev.target).is(selector) && ev.target.nodeType !== 3) {
+			$("#results").hide();
+		}
+	}
+	$("#results,body").mousedown(hideResults).each(function(i, el) {
+		el.ontouchstart = hideResults;
+	});
+});
