@@ -109,25 +109,31 @@
 	text-decoration: none;
 	color: #000000;
 }
+
 .suggestions-result a:link {
 	text-decoration: none;
 	color:#000000;
 }
+
 .suggestions-result a:visited {
 	text-decoration: none;
 	color:#000000;
 }
+
 .suggestions-result a:hover {
 	text-decoration: none;
 	color:#000000;
 }
+
 .suggestions-result a:active {
 	text-decoration: none;
 	color:#000000;
 }
+
 .suggestions-result:hover {
 	background-color: #ACD1E9;
 }
+
 a.sq-val-update {
 	font-size: 1.3em;
 	display: block;
@@ -139,18 +145,22 @@ a.sq-val-update {
 	width: 1.5em;
 	text-align: center;
 }
+
 a.sq-val-update:link {
 	text-decoration: none;
 	color:#000000;
 }
+
 a.sq-val-update:visited {
 	text-decoration: none;
 	color:#000000;
 }
+
 a.sq-val-update:hover {
 	text-decoration: none;
 	color:#000000;
 }
+
 a.sq-val-update:active {
 	text-decoration: none;
 	color:#000000;
@@ -203,7 +213,10 @@ ul#footer-info {
 	position: relative;
 }
 
-#userloginForm table, #userloginForm .user-login tr, #userloginForm .user-login th, #userloginForm .user-login td {
+#userloginForm table,
+#userloginForm .user-login tr,
+#userloginForm .user-login th, 
+userloginForm .user-login td {
 	width: 200px;
 	border: 0px;
 }
@@ -224,7 +237,8 @@ table.gallery .thumb[style] {
 	margin: 0 auto;
 }
 
-table.geography[style] td[style*="text-align"], table.geography[style] td[colspan="2"] {
+table.geography[style] td[style*="text-align"],
+table.geography[style] td[colspan="2"] {
 	text-align: left !important;
 	margin-left: 0 !important;
 	margin-right: 0 !important;
@@ -236,7 +250,8 @@ table.toc h2 {
 	margin-top: 5px;
 }
 
-table.gallery th, table.gallery td {
+table.gallery th,
+table.gallery td {
 	display: block;
 	border: 0;
 	border-bottom: 1px solid #cccccc;
@@ -294,6 +309,7 @@ table td, table th {
 	font-size: 1.1em;
 	color: #000000;
 }
+
 .mwm-message.mwm-notice a {
 	text-decoration: underline;
 	font-weight: bold;
@@ -350,7 +366,8 @@ h3#sopa-notice {
 	width: auto;
 }
 
-#nav form, #nav button {
+#nav form,
+#nav button {
 	display: inline-block;
 }
 
@@ -384,6 +401,7 @@ h3#sopa-notice {
 	text-align: center;
 	border: 1px solid grey;
 }
+
 .mwm-message.mwm-notice {
 	font-size: 1.1em;
 }
