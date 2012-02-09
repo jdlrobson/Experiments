@@ -5,3 +5,8 @@ betadev:
 
 setup:
 	ln -s ../MobileFrontend/library
+
+clean:
+	rm -f javascripts/beta_application.js
+	rm -f javascripts/beta_opensearch.js
+	rm -f stylesheets/beta_common.css
