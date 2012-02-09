@@ -109,21 +109,9 @@ WMobile.prototype = {
 			this.toggle_section(section_idx);
 		}
 	},
-	// TODO: refactor
 	toggle_section: function( section_id ) {
-		var i, b = $("#section_" + section_id)[0],
-			bb = $('button', b), s, e, d;
-
-		for(i = 0; i <= 1; i++) {
-			s = bb[i].style;
-			s.display = s.display === 'none' || ( i && !s.display ) ? 'inline-block' : 'none';
-		}
-		for(i = 0, d = ['content_','anchor_']; i<=1; i++) {
-			e = $( "#" + d[i] + section_id )[0];
-			if(e) {
-				e.style.display = e.style.display === 'block' ? 'none' : 'block';
-			}
-		}
+		$("#section_" + section_id + " button").toggle();
+		$( "#content_" + section_id + ",#anchor_" + section_id ).toggle();
 	},
 	init: function() {
 		var zeroRatedBannerVisibility, dismissNotification;
