@@ -9,3 +9,17 @@ this sym-links the library folder
 Go to LocalSettings.php and paste to enable this temporary module
 
 	require_once( "$IP/extensions/Experiments/MobileFrontend.php" );
+
+# Beta version
+The beta version is maintained on the betaversion branch [1]
+running
+
+	make setup
+
+or
+
+	make beta
+
+will link the latest beta
+
+[1] https://github.com/jdlrobson/Experiments/tree/betaversion
