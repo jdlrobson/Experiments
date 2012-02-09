@@ -37,7 +37,7 @@ class ApplicationTemplate extends MobileFrontendTemplate {
 		$jQueryScript = ( $this->data['device']['supports_jquery'] ) ? $startScriptTag . $javaScriptPath . 'jquery-1.7.1.min.js' . $endScriptTag : '';
 		$filePageScript = ( $this->data['isFilePage'] ) ? $startScriptTag . $javaScriptPath . 'filepage.js?version=122920111241' . $endScriptTag : '';
 
-		$startLinkTag = "<link href='{$this->data['wgExtensionAssetsPath']}/MobileFrontend/stylesheets/";
+		$startLinkTag = "<link href='{$this->data['wgExtensionAssetsPath']}/Experiments/stylesheets/";
 		$endLinkTag = "' media='all' rel='Stylesheet' type='text/css' />";
 		$filePageStyle = ( $this->data['isFilePage'] ) ? $startLinkTag . 'filepage.css' . $endLinkTag : '';
 
@@ -48,8 +48,8 @@ class ApplicationTemplate extends MobileFrontendTemplate {
 		  <head>
 			<title>{$this->data['htmlTitle']}</title>
 			<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-			<link href='{$this->data['wgExtensionAssetsPath']}/MobileFrontend/stylesheets/{$betaPrefix}common.css?version=01182012210728' media='all' rel='Stylesheet' type='text/css' />
-			<link href='{$this->data['wgExtensionAssetsPath']}/MobileFrontend/stylesheets/{$cssFileName}.css?version=01182012210728' media='all' rel='Stylesheet' type='text/css' />
+			<link href='{$this->data['wgExtensionAssetsPath']}/Experiments/stylesheets/{$betaPrefix}common.css?version=01182012210728' media='all' rel='Stylesheet' type='text/css' />
+			<link href='{$this->data['wgExtensionAssetsPath']}/Experiments/stylesheets/{$cssFileName}.css?version=01182012210728' media='all' rel='Stylesheet' type='text/css' />
 			{$filePageStyle}
 			<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
