@@ -4,10 +4,15 @@ if ( scriptPath ) {
 	apiUrl = scriptPath + apiUrl;	
 }
 
+RegExp.escape = function(str) {
+	return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 var TYPING_DELAY = 500;
 
 function writeResults(sections) {
-	var results = $("#results")[0], list;
+	var results = $("#results")[0], list,
+		term = $("#search").val();
 	var top = $("#sq").offset().top + $("#sq").outerHeight(true);
 	$(results).empty().css("top", top).
 		show().width($("#searchbox").width() - 2); // substract border left and right
@@ -21,8 +26,11 @@ function writeResults(sections) {
 			var label = section.label, 
 				item = $('<div class="suggestions-result">').appendTo(list)[0];
 			$('<a class="sq-val-update">+</a>').data("label", label).appendTo(item);
-			$('<a class="search-result-item">').attr("href", section.value).
-				text(label).appendTo(item);
+			var item = $('<a class="search-result-item">').attr("href", section.value).
+				text(label).appendTo(item)[0];
+			var escapedTerm = RegExp.escape($("<div />").text(term).html());
+			label = label.replace(new RegExp("("+ escapedTerm + ")", "ig"), "<strong>$1</strong>");
+			$(item).html(label);
 		});
 
 		// allow autocomplete via + button 
