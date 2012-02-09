@@ -43,6 +43,7 @@ WMobile.prototype = {
 		// hen clear button clicked hide results and self
 		$('#clearsearch').attr("title", "clear").
 			mousedown(function(ev) {
+				$("#results").empty();
 				$("#search").val("");
 				$(ev.target, "#results").hide();
 				// TODO: are these 2 following lines needed?

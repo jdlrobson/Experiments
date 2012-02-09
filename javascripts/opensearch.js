@@ -81,3 +81,30 @@ $(document).ready(function () {
 		el.ontouchstart = hideResults;
 	});
 });
+
+// when user starts a gesture revert to initial viewport
+var initial_viewport = $("meta[name='viewport']").attr("content");
+document.body.addEventListener("gesturestart", function() {
+		$("meta[name='viewport']").attr("content", initial_viewport);
+	}, false);
+
+function disableZoom() {
+	$("meta[name='viewport']").
+		attr("content", "width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0");
+}
+disableZoom();
+
+// on focusing turn into full-screen-search mode
+$("#search").focus(function() {
+	// turn off full-screen-search mode
+	function removeResults() {
+		$("body").removeClass("full-screen-search");
+	}
+
+	$("body").addClass("full-screen-search");
+	disableZoom();
+	if(!$("#remove-results")[0]) {
+		$('<a id="remove-results" />').attr("href", "#").
+			mousedown(removeResults).text("remove").prependTo("#sq");
+	}
+});
