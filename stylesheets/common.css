@@ -558,6 +558,10 @@ h3#sopa-notice {
 	width: 90%;
 }
 
+#search::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+}
+
 #goButton {
 	position: absolute;
 	right: 2px;
