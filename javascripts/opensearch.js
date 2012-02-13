@@ -14,7 +14,7 @@ var opensearch = {
 	writeResults: function(sections) {
 		var results = $("#results")[0], list,
 			term = $("#search").val(),
-			top = $("#sq").offset().top + $("#sq").outerHeight(true);
+			top = $("#searchbox").outerHeight();
 		$(results).empty().css("top", top).
 			show().width($("#searchbox").width() - 2); // substract border left and right
 		list = $('<div class="suggestions-results">').appendTo(results)[0];
