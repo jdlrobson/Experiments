@@ -398,6 +398,8 @@ a.search-result-item {
 	outline-width: initial;
 	outline-color: initial;
 	height: 1.4em;
+	padding: 0;
+	margin: 0;
 }
 
 ul#footer-info {
@@ -535,7 +537,7 @@ h3#sopa-notice {
 
 #logo {
 	position: absolute;
-	top: 4px;
+	top: 2px;
 	left: 5px;
 }
 
@@ -559,7 +561,7 @@ h3#sopa-notice {
 #goButton {
 	position: absolute;
 	right: 2px;
-	top: 2px;
+	top: 0;
 	border: 0;
 	background: url(images/s.gif) no-repeat top left;
 	background-size: 27px 25px;
