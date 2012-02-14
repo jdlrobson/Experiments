@@ -641,8 +641,16 @@ span.citation:target, cite:target {
 	background-color: #ddeeff;
 }
 
-.content_block,
-.section_anchors,
+button.show {
+	display: none;
+}
+
+.jsEnabled button.show {
+	display: inline-block;
+}
+
+.jsEnabled .content_block,
+.jsEnabled .section_anchors,
 button.section_heading.hide {
 	display: none;
 }

@@ -1,6 +1,7 @@
 /*global document, window, $*/
 /*jslint sloppy: true, white:true, maxerr: 50, indent: 4, plusplus: true*/
 
+$(document.body).addClass("jsEnabled");
 var Cookie = function (name) {
 	this.name = name;
 };
