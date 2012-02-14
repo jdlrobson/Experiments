@@ -27,8 +27,8 @@
 	margin: 0;
 }
 
-#header {
-	padding: 8px;
+#searchbox form {
+	margin: 0;
 }
 
 #content_wrapper {
@@ -40,36 +40,6 @@
 #footer {
 	background: white;
 	padding: 0 8px;
-}
-
-body {
-	width: 798px;
-	background: #6ee4ff;
-	font-size: 200%;
-}
-
-button, input {
-	font-size: 150%;
-}
-
-#header {
-	height: 100px;
-}
-
-#header #logo {
-	margin-right: 8px;
-}
-
-#header #homeButton {
-	float: left;
-}
-
-#header #search_bar {
-	padding-top: 20px;
-}
-
-#header #searchField {
-	width: 450px;
 }
 
 #footer #perm {
