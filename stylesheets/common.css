@@ -670,7 +670,7 @@ button.section_heading.hide {
 /*
 full screen search css
 */
-.full-screen-search #content,
+.full-screen-search #content_wrapper,
 .full-screen-search #footer,
 .full-screen-search #zero-rated-banner {
 	display: none;

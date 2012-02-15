@@ -18,7 +18,7 @@ var chrome = {
 		
 	},
 	init: function() {
-		preferencesDB.set('language', 'en');
+		preferencesDB.set('language', $("html").attr("lang"));
 	}
 };
 
