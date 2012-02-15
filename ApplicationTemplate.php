@@ -50,6 +50,7 @@ class ApplicationTemplate extends MobileFrontendTemplate {
 			<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
 			<link href='{$this->data['wgExtensionAssetsPath']}/Experiments/stylesheets/{$betaPrefix}common.css?version=01182012210728' media='all' rel='Stylesheet' type='text/css' />
 			<link href='{$this->data['wgExtensionAssetsPath']}/Experiments/stylesheets/{$cssFileName}.css?version=01182012210728' media='all' rel='Stylesheet' type='text/css' />
+			<link rel="stylesheet" href="{$this->data['wgExtensionAssetsPath']}/Experiments/leaflet/leaflet.css" /> 
 			{$filePageStyle}
 			<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,6 +68,9 @@ class ApplicationTemplate extends MobileFrontendTemplate {
 			{$zeroRatedBanner}
 			{$this->data['searchWebkitHtml']}
 			<div class='show' id='content_wrapper'>
+				<div id='nearby-overlay' style="display:none">
+					<div id="map"></div>
+				</div>
 			{$noticeHtml}
 			{$this->data['contentHtml']}
 			</div>
@@ -74,6 +78,11 @@ class ApplicationTemplate extends MobileFrontendTemplate {
 			 {$startScriptTag}{$javaScriptPath}{$betaPrefix}application.js?version=01132011120915{$endScriptTag}
 			 {$openSearchScript}
 			{$filePageScript}
+			<script type='text/javascript' src='{$this->data['wgExtensionAssetsPath']}/Experiments/javascripts/jquery.localize.js'></script>
+			<script type='text/javascript' src='{$this->data['wgExtensionAssetsPath']}/Experiments/leaflet/leaflet.js'></script>
+			<script type='text/javascript' src='{$this->data['wgExtensionAssetsPath']}/Experiments/javascripts/preferences.js'></script>
+			<script type='text/javascript' src='{$this->data['wgExtensionAssetsPath']}/Experiments/javascripts/stub.js'></script>
+			<script type='text/javascript' src='{$this->data['wgExtensionAssetsPath']}/Experiments/javascripts/geo.js'></script>
 		  </body>
 		</html>
 HTML;

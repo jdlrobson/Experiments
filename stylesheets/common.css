@@ -200,6 +200,7 @@ body {
 	-moz-border-radius: 2px;
 	clear: both;
 	padding: 5px 0;
+	z-index: 8;
 }
 
 .clearlink {
@@ -779,3 +780,6 @@ full screen search css
 	display: none !important;
 }
 
+#map {
+	height: 300px;
+}
